@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function showTab(i = 0){
         tabsContent[i].classList.add('show', 'fade');
-        tabsContent[i].classList.remove('hide')
+        tabsContent[i].classList.remove('hide');
         tabs[i].classList.add('tabheader__item_active');
     };
     
@@ -31,8 +31,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 if(tab === target){
                     hideTabs();
                     showTab(i);
-                }
-            })
-        }
-    })
+                };
+            });
+        };
+    });
 })

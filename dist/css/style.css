@@ -58,7 +58,7 @@ a {
   animation-duration: 1.5s; }
 
 @keyframes fade {
-  form {
+  from {
     opacity: 0.1; }
   to {
     opacity: 1; } }

@@ -128,8 +128,12 @@ window.addEventListener('DOMContentLoaded', () => {
           hideTabs();
           showTab(i);
         }
+
+        ;
       });
     }
+
+    ;
   });
 });
 
