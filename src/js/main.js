@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
+     // TABS 
     const tabsContent = document.querySelectorAll('.tabcontent'),
           tabsParent = document.querySelector('.tabheader__items'),
           tabs = tabsParent.querySelectorAll('.tabheader__item');
@@ -35,4 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         };
     });
+    //TIMER
+    
 })
