@@ -467,6 +467,9 @@
     display: block;
     width: 280px;
     margin: 0 auto; }
+  .modal__status-loading {
+    display: block;
+    margin: 0 auto; }
 
 * {
   box-sizing: border-box;
