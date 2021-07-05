@@ -215,10 +215,22 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   forms.forEach(form => {
-    postData(form);
-  })
+    BindPostData(form);
+  });
 
-  function postData(form) {
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-type': 'application/json'
+      },
+      body: data,
+    });
+
+    return await res.json();
+  }
+
+  function BindPostData(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -229,27 +241,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(form);
 
-      const JsonData = {};
-      formData.forEach((value, key) => {
-          JsonData[key] = value;
-      });
+      const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-      fetch('server.php', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify(JsonData)
-      }).then(data => data.text())
-      .then(data => {
-        showThanksModal(message.success);
-        console.log(data);
-        statusMessage.remove();
-      }).catch(() => {
-        showThanksModal(message.failure);
-      }).finally(() => {
-        form.reset();
-      })
+      postData('http://localhost:3000/requests', json)
+        .then(data => {
+          showThanksModal(message.success);
+          console.log(data);
+          statusMessage.remove();
+        }).catch(() => {
+          showThanksModal(message.failure);
+        }).finally(() => {
+          form.reset();
+        })
     })
   }
 
@@ -276,4 +279,8 @@ window.addEventListener('DOMContentLoaded', () => {
       prevModalDialog.classList.remove('hide');
     }, 4000);
   }
+
+  fetch('../db.json')
+    .then(data => data.json())
+    .then(res => console.log(res))
 })
